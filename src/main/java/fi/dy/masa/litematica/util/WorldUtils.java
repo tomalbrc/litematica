@@ -16,6 +16,7 @@ import net.minecraft.block.RepeaterBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.SignBlockEntity;
+import net.minecraft.block.entity.SignText;
 import net.minecraft.block.enums.BlockHalf;
 import net.minecraft.block.enums.ComparatorMode;
 import net.minecraft.block.enums.SlabType;
@@ -34,7 +35,6 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.Property;
 import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.structure.StructureTemplate;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -370,7 +370,7 @@ public class WorldUtils
         return false;
     }
 
-    public static void insertSignTextFromSchematic(SignBlockEntity beClient, String[] screenTextArr)
+    public static void insertSignTextFromSchematic(SignBlockEntity beClient, String[] screenTextArr, boolean front)
     {
         WorldSchematic worldSchematic = SchematicWorldHandler.getSchematicWorld();
 
@@ -380,14 +380,24 @@ public class WorldUtils
 
             if (beSchem instanceof SignBlockEntity)
             {
-                Text[] textSchematic = ((IMixinSignBlockEntity) beSchem).litematica_getText();
+                SignText stFrontSchem = (((IMixinSignBlockEntity) beSchem).litematica_getFrontText());
+                SignText stBackSchem = (((IMixinSignBlockEntity) beSchem).litematica_getBackText());
 
-                if (textSchematic != null)
+                if (stFrontSchem != null)
                 {
+                    beClient.setText(stFrontSchem, true);
+                }
+
+                if (stBackSchem != null)
+                {
+                    beClient.setText(stBackSchem, false);
+                }
+
+                SignText stSchem = front ? stFrontSchem : stBackSchem;
+                if (stSchem != null) {
                     for (int i = 0; i < screenTextArr.length; ++i)
                     {
-                        screenTextArr[i] = textSchematic[i].getString();
-                        beClient.setTextOnRow(i, textSchematic[i]);
+                        screenTextArr[i] = stSchem.getMessage(i, false).getString();
                     }
                 }
             }
