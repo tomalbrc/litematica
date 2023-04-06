@@ -8,8 +8,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.util.hit.BlockHitResult;
@@ -701,7 +701,7 @@ public class RayTraceUtils
             boolean returnLastUncollidableBlock, boolean respectLayerRange)
     {
         if ((respectLayerRange == false || data.range.isPositionWithinRange(data.x, data.y, data.z)) &&
-            (ignoreBlockWithoutBoundingBox == false || blockState.getMaterial() == Material.PORTAL ||
+            (ignoreBlockWithoutBoundingBox == false || blockState.isOf(Blocks.NETHER_PORTAL) ||
              blockState.getCollisionShape(world, data.blockPos).isEmpty() == false))
         {
             VoxelShape blockShape = blockState.getOutlineShape(world, data.blockPos);
