@@ -33,8 +33,7 @@ public class FakeLightingProvider extends LightingProvider
         return 15;
     }
 
-    public static class FakeLightingView implements ChunkLightingView
-    {
+    public static class FakeLightingView implements ChunkLightingView {
         @Nullable
         @Override
         public ChunkNibbleArray getLightSection(ChunkSectionPos pos)
@@ -54,18 +53,13 @@ public class FakeLightingProvider extends LightingProvider
         }
 
         @Override
-        public void addLightSource(BlockPos pos, int i)
-        {
-        }
-
-        @Override
         public boolean hasUpdates()
         {
             return false;
         }
 
         @Override
-        public int doLightUpdates(int i, boolean bl, boolean bl2)
+        public int doLightUpdates()
         {
             return 0;
         }
@@ -79,6 +73,11 @@ public class FakeLightingProvider extends LightingProvider
         @Override
         public void setColumnEnabled(ChunkPos chunkPos, boolean bl)
         {
+        }
+
+        @Override
+        public void method_51471(ChunkPos chunkPos) {
+
         }
     }
 }

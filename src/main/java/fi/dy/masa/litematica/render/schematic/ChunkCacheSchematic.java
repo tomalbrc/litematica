@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.class_8527;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.util.math.BlockPos;
@@ -70,7 +71,7 @@ public class ChunkCacheSchematic implements BlockRenderView, ChunkProvider
 
     @Override
     @org.jetbrains.annotations.Nullable
-    public BlockView getChunk(int chunkX, int chunkZ)
+    public class_8527 getChunk(int chunkX, int chunkZ)
     {
         return null; // TODO 1.17 this shouldn't be needed since the lighting provider does nothing
     }
