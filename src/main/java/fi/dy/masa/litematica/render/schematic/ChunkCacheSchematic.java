@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.class_8527;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.util.math.BlockPos;
@@ -17,6 +16,7 @@ import net.minecraft.world.biome.ColorResolver;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkProvider;
 import net.minecraft.world.chunk.WorldChunk;
+import net.minecraft.world.chunk.light.LightSourceView;
 import net.minecraft.world.chunk.light.LightingProvider;
 import fi.dy.masa.litematica.world.FakeLightingProvider;
 
@@ -71,7 +71,7 @@ public class ChunkCacheSchematic implements BlockRenderView, ChunkProvider
 
     @Override
     @org.jetbrains.annotations.Nullable
-    public class_8527 getChunk(int chunkX, int chunkZ)
+    public LightSourceView getChunk(int chunkX, int chunkZ)
     {
         return null; // TODO 1.17 this shouldn't be needed since the lighting provider does nothing
     }

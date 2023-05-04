@@ -76,7 +76,7 @@ public class FakeLightingProvider extends LightingProvider
         }
 
         @Override
-        public void method_51471(ChunkPos chunkPos) {
+        public void propagateLight(ChunkPos chunkPos) {
 
         }
     }
